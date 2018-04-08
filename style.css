@@ -1,6 +1,7 @@
 html, body {
     width: 100%;
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 #features {
     top: -50px;
@@ -26,7 +27,7 @@ body, .jumbotron, .footer-brand {
 }
 body {
     background: #343332;
-    color: white;
+    color: #74B8FF;
 }
 .footer-brand {
     font-size: 150%;
@@ -88,7 +89,7 @@ ul.nav a:hover, ul.nav a:focus, ul.button a:hover {
     top: 6em;
 }
 footer {
-    color: #FFFBF8;
+    color: #74B8FF;
     background: #343332;
     padding: 16px 0 18px 0;
     position: sticky;
@@ -102,7 +103,7 @@ footer {
 }
 .icon.icon-droplet {
     fill: currentColor;
-    background-color: #15ACE2;
+    background-color: #74B8FF;
     border-radius: 5px;
     border: 1px solid white;
     margin-right: 0.7em;
@@ -123,12 +124,12 @@ h2 {
 }
 h4 {
     font-size: 300%;
-    color: #FFFBF8;
+    color: #74B8FF;
 }
 h5 {
     font-size: 300%;
     text-align: center;
-    color: #FFFBF8;
+    color: #74B8FF;
     background: #343332;
 }
 img {
