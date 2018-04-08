@@ -2,6 +2,10 @@ html, body {
     width: 100%;
     overflow-x: hidden;
     overflow-y: hidden;
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
 }
 #features {
     top: -50px;
@@ -159,7 +163,7 @@ input, textarea {
     margin-left: 0.6em;
     border-style: solid;
     border-width: 0px 0px 1px 0px;
-    border-color: #15ACE2;
+    border-color: #74B8FF;
     width: auto; 
 }
 .sign-container {
