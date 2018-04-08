@@ -22,7 +22,7 @@ html, body {
     background-size: 245% auto;
 }
 oueve-assistant{
-    background: url(background.jpg);
+    background: url(/images/background.jpg);
 }
 
 body, .jumbotron, .footer-brand {
@@ -263,7 +263,7 @@ descriptions {
     width: 258px;
     height: 250px;
     left: -50px;
-    background: url("img.png") 0 0;
+    background: url("/images/img.png") 0 0;
 }
 .iPad {
     position: absolute;
@@ -271,7 +271,7 @@ descriptions {
     width: 258px;
     height: 400px;
     left: 0px;
-    background: url("img.png") 0 0;
+    background: url("/images/img.png") 0 0;
 }
 #features {
     padding-top: 15px;
