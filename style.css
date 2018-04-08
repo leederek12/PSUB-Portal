@@ -21,6 +21,9 @@ html, body {
     background-position: center center;
     background-size: 245% auto;
 }
+.jumbotron, iPhone-5, iPad {
+    background-size: 350% auto;
+}
 oueve-assistant{
     background: url(/images/background.jpg);
 }
