@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Databases</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.1/css/foundation.min.css"> -->
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker" rel="stylesheet">
+
+        <link href="../bootstrap.min.css" rel="stylesheet">
+        <link href="databases.css" rel="stylesheet" >
+
+    </head>
+    <body onLoad="load()">
+        <!-- Nav Bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark static-top">
+            <div class="container">
+                <a class="navbar-brand">
+                    <img src="../Logo.png" alt="" id="navLogo">
+                    </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" id="navNameLI"><a class="nav-link" id="navName">Hi!</a></li>
+
+                    <li class="nav-item" id="hoursNav">
+                        <a class="nav-link" href="../hours/hours.html">Hours</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../marketing/marketing.html">Marketing</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="databases.html">Databases
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" id="attendanceNav">
+                        <a class="nav-link" href="../attendance/attendance.html">Attendance</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../calendar/calendar.html">Calendar</a>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-outline-primary" onclick="logout()">Logout</button>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div id="tabBox">
+            <div id="tab" class="tab nav nav-tabs">
+                <li class="nav-item fullTab">
+                    <a class="nav-link active" id="memberNav" onclick="openTab('members')">Members</a>
+                </li>
+                <li class="nav-item fullTab">
+                    <a class="nav-link" id="alumniNav" onclick="openTab('alumni')">Alumni</a>
+                </li>
+            </div>
+
+            <div class="input-group fluid-container" id="searchBar">
+                <input type="text" class="form-control" placeholder="Search" id="txtSearch"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-primary searchButton" type="submit" onclick="search()" id="searchButton">
+                        <span>Search</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="membersTab" class="tabcontent fluid-container">
+                <!-- <h1>Members</h1> -->
+                <table id="table" class="table">
+                    <thead>
+                        <th style="width: 20%">Name</th>
+                        <th style="width: 20%">Committee</th>
+                        <th style="width: 20%">Major</th>
+                        <th style="width: 10%">Class</th>
+                        <th style="width: 30%">Email</th>
+                    </thead>
+                    
+                    <tbody id="tableBodyMembers"></tbody>
+                </table>
+            </div>
+
+            <div id="alumniTab" class="tabcontent fluid-container">
+                <!-- <h1>Alumni</h1>I -->
+                <table id="table" class="table">
+                    <thead>
+                        <th style="width: 20%">Name</th>
+                        <th style="width: 10%">Years on PSUB</th>
+                        <th style="width: 10%">Position</th>
+                        <th style="width: 30%">Current Work</th>
+                        <th style="width: 30%">Contact Info</th>
+                    </thead>
+                    
+                    <tbody id="tableBodyAlumni"></tbody>
+                </table>
+            </div>
+            <div id="searchTabMembers" class="tabcontent fluid-container">
+                <!-- <h1>Members</h1> -->
+                <table id="table" class="table">
+                    <thead>
+                        <th style="width: 20%">Name</th>
+                        <th style="width: 20%">Committee</th>
+                        <th style="width: 20%">Major</th>
+                        <th style="width: 10%">Class</th>
+                        <th style="width: 30%">Email</th>
+                    </thead>
+                    
+                    <tbody id="searchedTableBodyMembers"></tbody>
+                </table>
+            </div>
+            <div id="searchTabAlumni" class="tabcontent fluid-container">
+                <!-- <h1>Alumni</h1>I -->
+                <table id="table" class="table">
+                    <thead>
+                        <th style="width: 20%">Name</th>
+                        <th style="width: 10%">Years on PSUB</th>
+                        <th style="width: 10%">Position</th>
+                        <th style="width: 30%">Current Work</th>
+                        <th style="width: 30%">Contact Info</th>
+                    </thead>
+                    
+                    <tbody id="searchedTableBodyAlumni"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <script src="../jquery-3.2.1.min.js"></script>
+        <script src="../bootstrap.bundle.min.js"></script>
+        <script src="databases.js"></script>
+    </body>
+       
+</html>

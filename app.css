@@ -1,0 +1,88 @@
+canvas{ 
+    display: block; 
+    /* display: none; */
+    vertical-align: bottom;
+    position: absolute;
+    z-index: -1;
+    top: 0; 
+}
+
+body{
+    height: 100%;
+}
+
+h1{
+    text-align: center;
+    color: white;
+}
+h3{
+    text-align: left;
+}
+h3.hidden{
+    visibility: hidden;
+}
+h3.visible{
+    visibility: visible;
+}
+button.hidden{
+    visibility: hidden;
+}
+
+img{
+    padding-top: 10px;
+    padding-bottom: 0px;
+}
+
+#normalTheme{
+    background-color:#4169E1;
+}
+
+#themeToggle{
+    padding: 0.5rem;
+    top: 1.5vw;
+    right: 1.5vw;
+    position: absolute;
+    font-size: 10px;
+}
+
+#logo{
+    height: 30vw;
+    width: 30vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#committeeSelect, #memberSelect, #pinText{
+    margin-bottom: 10px;
+    background-color: #F2F2F2;
+}
+
+#login-form{
+    text-align: center;
+}
+
+#dateInput, #eventInput, #hoursInput, #eventType, #hoursButton{
+    margin-bottom: 5vw;
+}
+
+#hoursButton{
+    border: 2px solid white;
+}
+
+#hoursButton:hover{
+    background: white;
+    border: 2px solid blue;
+}
+
+#confirmArea{
+    text-align: center;
+    color: white;
+}
+
+#confirmArea h5{
+    font-weight: bold;
+}
+
+/* Particles */
+#particles-js{ position:absolute; width: 100%; height: 100%; background-color: #6e352c; background-image: url(""); background-repeat: no-repeat; background-size: cover; background-position: 50% 50%; } /* ---- stats.js ---- */ .count-particles{ background: #000022; position: absolute; top: 48px; left: 0; width: 80px; color: #13E8E9; font-size: .8em; text-align: left; text-indent: 4px; line-height: 14px; padding-bottom: 2px; font-family: Helvetica, Arial, sans-serif; font-weight: bold; } .js-count-particles{ font-size: 1.1em; } #stats, .count-particles{ -webkit-user-select: none; margin-top: 5px; margin-left: 5px; } #stats{ border-radius: 3px 3px 0 0; overflow: hidden; } .count-particles{ border-radius: 0 0 3px 3px; }

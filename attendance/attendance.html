@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Attendance</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.1/css/foundation.min.css"> -->
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker" rel="stylesheet">
+
+        <link href="../bootstrap.min.css" rel="stylesheet">
+        <link href="attendance.css" rel="stylesheet" >
+        <script src="https://www.google.com/jsapi" type="text/javascript"></script>
+
+    </head>
+    <body onLoad="load()">
+        <!-- Nav Bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark static-top">
+            <div class="container">
+                <a class="navbar-brand">
+                    <img src="../Logo.png" alt="" id="navLogo">
+                    </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" id="navNameLI"><a class="nav-link" id="navName">Hi!</a></li>
+
+                    <li class="nav-item" id="hoursNav">
+                        <a class="nav-link" href="../hours/hours.html">Hours</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../marketing/marketing.html">Marketing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../databases/databases.html">Databases</a>
+                    </li>
+                    <li class="nav-item active" id="attendanceNav">
+                        <a class="nav-link" href="attendance.html">Attendance
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../calendar/calendar.html">Calendar</a>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-outline-primary" onclick="logout()">Logout</button>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Intercommittee Section -->
+        <div id="intercommitteeSection" class="container">
+            <div class="card">
+                <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <h5 class="mb-0">
+                        Intercommittee Showdown
+                    </h5>
+                </div>
+            
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#intercommitteeSection">
+                    <div class="card-body">
+                        <ul class="bar-graph">
+                            <li class="bar primary" style="height: 0%;" title="0" id="artsAndCultureLI">
+                                <div class="description">A&C</div>
+                                <div class="percent" id="artsAndCultureTXT">90</div>
+                            </li>
+                            <li class="bar secondary" style="height: 0%;" title="0" id="currentEventsLI">
+                                <div class="percent" id="currentEventsTXT">80</div>
+                                <div class="description">CE</div>
+                            </li>
+                            <li class="bar success" style="height: 0%;" title="0" id="entertainmentLI">
+                                <div class="percent" id="entertainmentTXT">70</div>
+                                <div class="description">ENT</div>
+                            </li>
+                            <li class="bar warning" style="height: 0%;" title="0" id="publicityLI">
+                                <div class="percent" id="publicityTXT">60</div>
+                                <div class="description">PUB</div>
+                            </li>
+                            <li class="bar alert" style="height: 0%;" title="0" id="purdueAfterDarkLI">
+                                <div class="percent" id="purdueAfterDarkTXT">50</div>
+                                <div class="description">PAD</div>
+                            </li>
+                            <li class="bar extra" style="height: 0%;" title="0" id="spiritAndTraditionsLI">
+                                <div class="percent" id="spiritAndTraditionsTXT">40</div>
+                                <div class="description">S&T</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+        <form class="container" id="headerBox">
+            <!-- <h1>Attendance</h1> -->
+            <table class="AttendanceTable table" style="width:100%;">
+                <thead id="tableHead">
+                    <tr>
+                        <th>Member</th>
+                        <th width = "200">Attendance</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+            
+            <button type="button" id="submit" class="btn btn-primary" onclick="submitAttendance();">Submit</button>
+        </form>
+
+        <script src="../jquery-3.2.1.min.js"></script>
+        <script src="../bootstrap.bundle.min.js"></script>
+        <script src="attendance.js"></script>
+
+    </body>
+       
+</html>
