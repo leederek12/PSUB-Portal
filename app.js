@@ -5,43 +5,52 @@ var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"
 
 // Committee Spreadsheet IDS
 var sheetIDS = {
-    "artsAndCulture": '1mbu-7VK5mqQk2FNKwwk0b5CGbXt1nGaW53rVa4lbvPc',
-    "currentEvents": '12a9SZndguVFyRlO8xbAj9vLQ5J45Dmn8DIeEBenVOSY',
-    "entertainment": '1CwhXGiTaf8QZHMfSOiBkF2CrqQlPRYPiB0-j-BHADRI',
-    "publicity": '1rU7315Nl-fZpTU2YCRcKWUmYUBqlSLMfhFEJ7e8slf8',
-    "purdueAfterDark": '1cYa09UftGhaE8ExG9bJnuxwAgalSbY4-t5abFZY1QPQ',
-    "spiritAndTraditions": '1r7cxTeWDccKVAp4_cd9BKSnhxqRxQv9goxEYafTPv5I'
+    "afterDark": '1cEy-qHpHlP-PzhK_DAc52CCetp7eMuSySXrmgU8cG1U',
+    "currentEvents": '1kRw5iikX74fwatg8zooitmNW6xMGbsZvVqKHr6mPxnc',
+    "entertainment": '1MxtSSUmbhFyEP305ShrrIjvtZb8iTDz21Nmt9EWnJu4',
+    "fineArts": '1pOqGyj3G0a-55HphaA87zKGGFG5vMGS7McfkjGa9TLU',
+    "publicity": '1bIN6fJqJv1nlRoIc85GQkHa4NTJBqhsKyKKauQ9xsqI',
+    "spiritAndTraditions": '1SzMuiuWEO-O0vweLPDi7z6efvi0u_d9eY08l5GuToAY', 
+    "boardofDirectors": '1qbhzwZuGyq7iwM6RhdtBaJGvXnlZBij-A0bu0EqN3y4',
+    "alumni": '11aaTwDKrrWNE7wAm_keE1g_ZI1NKn-S-WDLrdOfCKD0',
+    "inactive": '1eJUkTyu0-3QIZf3nJWQ5t8pGg0Hs3pR4KNDRybgZkw4'
 }
+
+var positionID = '1Fw1q1b4g7BZOsbKChoaWLf2QlETS9cxO15omLKBqUXs';
+var positionArray = [];
 
 //All Committee Data
 var committees = {
-    "artsAndCulture": [],
+    "afterDark": [],
     "currentEvents": [],
     "entertainment": [],
+    "fineArts": [],
     "publicity": [],
-    "purdueAfterDark": [],
-    "spiritAndTraditions": []
+    "spiritAndTraditions": [],
+    "boardofDirectors": [],
+    "alumni": [],
+    "inactive": [],
 };
 
-var committeeList = ["artsAndCulture", "currentEvents", "entertainment", "publicity", "purdueAfterDark", "spiritAndTraditions"];
-let execList = ["President", "Personnel", "Finance and Logistics", "Campus Relations"];
+var committeeList = ["afterDark", "currentEvents", "entertainment", "publicity", "fineArts", "spiritAndTraditions", "boardofDirectors"/*, "alumni", "inactive"*/];
 
 //All Intercommittee Points
 var points = {
-    "artsAndCulture": 0,
+    "afterDark": 0,
     "currentEvents": 0,
     "entertainment": 0,
+    "fineArts": 0,
     "publicity": 0,
-    "purdueAfterDark": 0,
-    "spiritAndTraditions": 0
+    "spiritAndTraditions": 0,
+    "boardofDirectors": 0
 }
 
 var scripts = {
-    "artsAndCulture": "https://script.google.com/macros/s/AKfycbwHZInpf-2XVeATHRFTi2s2KMFh5odvbvGvLYmdVah-Mc0j1ss/exec",
+    "afterDark": "https://script.google.com/macros/s/AKfycbx24jPoHIZWISV3ZSNg2KMyR2-HaCD_YSYZIgC8/exec",
     "currentEvents": "https://script.google.com/macros/s/AKfycbxNNSZ-oIRBXZUm1I6isLwo0LpNQxpI-y6Gur_9-Jmu2Hcwo7E/exec",
     "entertainment": "https://script.google.com/macros/s/AKfycbx5kmyOMiui5joHakz-RDs5AtHYI64I7BBZ_rkLBWVww5RClrw/exec",
+    "fineArts": "https://script.google.com/macros/s/AKfycbwHZInpf-2XVeATHRFTi2s2KMFh5odvbvGvLYmdVah-Mc0j1ss/exec",
     "publicity": "https://script.google.com/macros/s/AKfycbxsLiZpXYRBjCN2Eo5GYvxmv-BDoMu9JcX2CX2LSRldleYlxPM/exec",
-    "purdueAfterDark": "https://script.google.com/macros/s/AKfycbwsOqIWytba8oZvq9NaZ1bshNIkKPD2-jwrfOILRVcQVosB0j4/exec",
     "spiritAndTraditions": "https://script.google.com/macros/s/AKfycbyCj7FY0DXRp1T_gTH6mM261puqhUGqIvIXdGo5Yp-FXJ5VUqk/exec"
 }
 
@@ -62,18 +71,52 @@ function load() {
         console.log("Local Storage Found. Redirecting");
         let name = JSON.parse(localStorage.getItem("psubPortal")).name;
         let committee = JSON.parse(localStorage.getItem("psubPortal")).committee;
-        if(name !== "Director "){
+        if (currentCommittee.localeCompare("boardofDirectors") != 0) {
             window.location.replace("hours/hours.html");
         }
         else{
-            if(committeeList.indexOf(committee) !== -1){
-                window.location.replace("attendance/attendance.html");
+            console.log(committee);
+            
+            if (committee.localeCompare("inactive") == 0 || committee.localeCompare("alumni") == 0) {
+                window.location.replace("goalsandinitiatives/goals.html");
             }
             else{
-                window.location.replace("marketing/marketing.html");
+                window.location.replace("hours/hours.html");
             }
         }
     }
+    loadBOD();
+}
+
+function loadBOD() {
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": 'https://spreadsheets.google.com/feeds/list/1Fw1q1b4g7BZOsbKChoaWLf2QlETS9cxO15omLKBqUXs/1/public/full?alt=json-in-script',
+        "method": "GET",
+        "headers": {
+        }
+    }
+
+    $.ajax(settings).done(function (response) {
+        //console.log(response);
+        response = response.substring(response.indexOf("{"), response.length - 2)
+        var response = JSON.parse(response);
+        console.log(response);
+                
+        for (var i = 0; i < response.feed.entry.length; i++) {
+            if (i !== response.feed.entry.length - 1) {
+                var tempPosition = response.feed.entry[i].gsx$position.$t;
+                var tempPerson = response.feed.entry[i].gsx$person.$t;
+                var tempCommittee = response.feed.entry[i].gsx$previouscommittee.$t;
+
+                positionArray.push({ position: tempPosition, person: tempPerson, previousCommittee: tempCommittee });
+
+            }
+        }
+        console.log(positionArray);
+    });
+    console.log("BOD Data Loaded Successfully");
 }
 
 function data(committee) {
@@ -96,6 +139,7 @@ function data(committee) {
         response = response.substring(response.indexOf("{"), response.length - 2)
         var response = JSON.parse(response);
         console.log(response);
+                
         for (var i = 0; i < response.feed.entry.length; i++) {
             if (i !== response.feed.entry.length - 1) {
                 var tempName = response.feed.entry[i].gsx$name.$t;
@@ -124,32 +168,25 @@ function committeeChange() {
     $("#memberSelect").empty();
     var select = document.getElementById("committeeSelect");
     var text = select.options[select.selectedIndex].text; //committee Text
+    
+    console.log("selected: " + text);
 
-    if(text !== "Board of Directors"){
-        text = text.substring(0, 1).toLowerCase() + text.substring(1, text.length);
-        text = text.replace(/\s/g, '') //Manipulation Done
-        
-        var optionsAsString = "";
-        for (var i = 0; i < committees[text].length - 1; i++) {
-            optionsAsString += "<option value='" + committees[text][i].name + "'>" + committees[text][i].name + "</option>";
-        }
-        $("#memberSelect").html(optionsAsString);
-        console.log("Members Updated");
-    }
-    else{
-        let committees = ["After Dark", "Current Events", "Entertainment", "Fine Arts", "Publicity", "Spirit and Traditions"];
-        let committeeValues = ["purdueAfterDark", "currentEvents", "entertainment", "artsAndCulture", "publicity","spiritAndTraditions"];
+    
+    text = text.substring(0, 1).toLowerCase() + text.substring(1, text.length);
+    text = text.replace(/\s/g, '') //Manipulation Done
 
-        var optionsAsString = "";
-        for(let i = 0; i < committees.length; i++){
-            optionsAsString += "<option value='" + committeeValues[i] + "'>" + committees[i] + "</option>";
-        }
-        for(let i = 0; i < execList.length; i++){
-            optionsAsString += "<option value='" + execList[i] + "'>" + execList[i] + "</option>";
-        }
-        $("#memberSelect").html(optionsAsString);
-        console.log("Members Updated");
+    console.log("changed: " + text);
+
+    var optionsAsString = "";
+
+    console.log(text);
+    console.log(committees[text]);
+
+    for (var i = 0; i < committees[text].length - 1; i++) {
+        optionsAsString += "<option value='" + committees[text][i].name + "'>" + committees[text][i].name + "</option>";
     }
+    $("#memberSelect").html(optionsAsString);
+    console.log("Members Updated");
 }
 
 document.getElementById('login-form').onkeydown = function(e){
@@ -170,8 +207,7 @@ function login() {
     if (committee === 'Select Your Committee' || user === 'Committee Not Selected') {
         unsuccessfulLogin("Committee and/or Member Information Missing");
     }
-    else {
-
+    else {        
         committee = committee.substring(0, 1).toLowerCase() + committee.substring(1, committee.length);
         committee = committee.replace(/\s/g, '') //Manipulation Done
 
@@ -179,35 +215,18 @@ function login() {
 
         // console.log(committee + ", " + user + ", " + pinInput);
         
-        if(committee !== "boardofDirectors"){
-            for (var i = 0; i < committees[committee].length; i++) {
-                if (committees[committee][i].name === user) {
-                    console.log(committees[committee][i].pin);
-                    if (committees[committee][i].pin === pinInput) {
-                        console.log("Successful Login");
-                        successfulLogin(committees[committee][i], committee);
-                    }
-                    else {
-                        unsuccessfulLogin("Incorrect PIN");
-                    }
-                    i = committees[committee].length;
-                }
-            }
-        }
-        else{
-            let newCommittee = selectedUser.options[selectedUser.selectedIndex].value;
-            console.log(newCommittee);
-            console.log("BOD Login");
-            let dataObj = {
-                // "committee": newCommittee,
-                "name": "Director "
-            };
-
-            if(pinInput === user){
-                successfulLogin(dataObj, newCommittee);
-            }
-            else{
-                unsuccessfulLogin("Incorrect PIN");
+        for (var i = 0; i < committees[committee].length; i++) {
+            if (committees[committee][i].name === user) {
+                console.log("name: " + committees[committee][i].name);
+                //REMOVE
+                //if (committees[committee][i].pin === pinInput) {
+                    console.log("Successful Login");
+                    successfulLogin(committees[committee][i], committee);
+                //}
+                //else {
+                //    unsuccessfulLogin("Incorrect PIN");
+                //}
+                i = committees[committee].length;
             }
         }
     }
@@ -216,20 +235,25 @@ function login() {
 }
 
 function successfulLogin(data, committee) {
-    console.log("DATA: " + data);
+    if (committee.localeCompare("boardOfDirectors")) {
+        for (var i = 0; i < positionArray.length; i++) {
+            console.log("current: " + positionArray[i].position);
+            if (positionArray[i].position.localeCompare(data.name) == 0){
+                data.name = positionArray[i].person;
+                console.log("SAME SAME: " + i);
+            }
+        }
+    }
+    
     let storageObj = data;
     storageObj["committee"] = committee;
     localStorage.setItem("psubPortal", JSON.stringify(storageObj));
+    console.log(committee);
 
-    if(committeeList.indexOf(storageObj.committee) !== -1){
-        window.location.replace("attendance/attendance.html");
-    }
-    else if(execList.indexOf(storageObj.committee) !== -1){
-        window.location.replace("marketing/marketing.html");
-    }
-    else{
-        window.location.replace("hours/hours.html");
-    }
+    console.log("DATA: " + data.name);
+    console.log("DATA: " + data.committee);
+
+    window.location.replace("welcome/welcome.html");
 }
 
 function unsuccessfulLogin(reason) {

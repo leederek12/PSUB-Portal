@@ -1,0 +1,72 @@
+body{
+    background-color: #F2F2F2;
+}
+
+.navbar-dark{
+    background-color: #4169E1;
+}
+
+.btn-outline-primary{
+    color: #294390;
+    border-color: #294390;
+}
+
+.btn-outline-primary:hover{
+    color: white;
+    background-color: #294390;
+    border-color: #294390;
+}
+
+#navLogo{
+    width: 5rem;
+    height: auto;
+    pointer-events: none;
+}
+
+#navNameLI{
+    pointer-events: none;
+    font-weight: bold;
+}
+
+#navName{
+    color: #294390;
+}
+
+h1{
+    text-align: center;
+    color: white;
+}
+h3{
+    text-align: left;
+}
+h3.hidden{
+    visibility: hidden;
+}
+h3.visible{
+    visibility: visible;
+}
+button.hidden{
+    visibility: hidden;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    border-top: 30px;
+}
+
+
+.table-expand-row-bottom{
+    pointer-events: none;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+

@@ -36,12 +36,16 @@ function load(){
         getLocations();
 
         // Handle BOD
-        //alumni
-        if(currentCommittee.localeCompare("alumni") == 0 || currentCommittee.localeCompare("inactive") == 0){
-            window.location.replace("../hours/hours.html");
+        if(firstName === "Director"){
+            document.getElementById("hoursNav").remove();
+            currentName = firstName + " of " + committeeNames[committeeList.indexOf(currentCommittee)];
+
+            if(committeeList.indexOf(currentCommittee) === -1){
+                document.getElementById("attendanceNav").remove();
+                currentName = currentCommittee;
+            }
         }
-        //general member
-        else if(currentCommittee.localeCompare("boardofDirectors") != 0){
+        else{
             document.getElementById("attendanceNav").remove();
         }
     }

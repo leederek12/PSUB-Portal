@@ -63,6 +63,10 @@ table thead th{
     text-align: center;
 }
 
+tableMain thead th{
+    text-align: center;
+}
+
 #memberArea{
     background: rgba(255, 255, 255, 0.5);
     /* border-radius: 25px; */
@@ -122,7 +126,7 @@ table thead th{
     padding-right: 3rem;
 }
 
-.table tbody tr:hover{
+.table#hoursTable tbody tr:hover{
     background-color: lightcoral;
     cursor: pointer;
 }
@@ -141,6 +145,14 @@ ul {
     padding: 0px;
     margin-top: 15px;
     cursor: pointer;
+}
+
+#titleCard{
+  padding: 0px;
+  margin-top: 41px;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 15px;
 }
 
 

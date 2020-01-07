@@ -15,13 +15,11 @@
     <body onLoad="load()">
 
         <!-- Nav Bar -->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark static-top">
             <div class="container">
-                <li class="navbar-brand">
-                    <a href ="../welcome/welcome.html">
-                        <img src="../Logo.png" alt="" id="navLogo">
+                <a class="navbar-brand">
+                    <img src="../Logo.png" alt="" id="navLogo">
                     </a>
-                </li>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
@@ -38,18 +36,14 @@
                     <li class="nav-item" id="hoursNav">
                         <a class="nav-link" href="../hours/hours.html">Hours</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="../marketing/marketing.html">Physical Marketing</a>
                     </li>
-                    <li class="nav-item" id="attendanceNav">
-                        <a class="nav-link" href="../attendance/attendance.html">Attendance
+                    <li class="nav-item active" id="attendanceNav">
+                        <a class="nav-link" href="attendance.html">Attendance
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li class="nav-item" id="helpNav">
-                        <a class="nav-link" href="../help/help.html">Help</a>
-                    </li>
-                    
                     <li class="nav-item">
                         <button type="button" class="btn btn-outline-primary" onclick="logout()">Logout</button>
                     </li>
@@ -57,7 +51,6 @@
                 </div>
             </div>
         </nav>
-        <br><br><br><br>
 
        <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
@@ -80,7 +73,8 @@
       </div>
         
         <!-- Title Card -->
-        <div id="titleCard" class="container">
+        <br>
+        <div id="intercommitteeSection" class="container">
             <div class="card">
                 <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     <h5 class="mb-0">
@@ -88,7 +82,7 @@
                     </h5>
                 </div>
             
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#titleCard">
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#intercommitteeSection">
                     <div class="card-body">
                         <p>
                             Physical Marketing is one of the most fundamental ways the Purdue Student Union Board establishes its image on campus.

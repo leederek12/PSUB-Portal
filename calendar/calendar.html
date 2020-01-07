@@ -32,11 +32,13 @@
     </head>
     <body onLoad="load()">
         <!-- Nav Bar -->
-        <nav class="navbar navbar-expand-lg navbar-dark static-top">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
             <div class="container">
-                <a class="navbar-brand">
-                    <img src="../Logo.png" alt="" id="navLogo">
+                <li class="navbar-brand">
+                    <a href ="../welcome/welcome.html">
+                        <img src="../Logo.png" alt="" id="navLogo">
                     </a>
+                </li>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
@@ -45,21 +47,24 @@
                     <li class="nav-item" id="navNameLI"><a class="nav-link" id="navName">Hi!</a></li>
 
                     <li class="nav-item" id="hoursNav">
-                        <a class="nav-link" href="../hours/hours.html">Hours</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../marketing/marketing.html">Marketing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../databases/databases.html">Databases</a>
-                    </li>
-                    <li class="nav-item" id="attendanceNav">
-                        <a class="nav-link" href="../attendance/attendance.html">Attendance</a>
+                        <a class="nav-link" href="../goalsandinitiatives/goals.html">Goals and Initiatives</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="calendar.html">Calendar
+                        <a class="nav-link" href="../calendar/calendar.html">Calendar</a>
+                    </li>
+                    <li class="nav-item" id="hoursNav">
+                        <a class="nav-link" href="../hours/hours.html">Hours</a>
+                    </li>
+                    <li class="nav-item" id="marketingNav">
+                        <a class="nav-link" href="../marketing/marketing.html">Physical Marketing</a>
+                    </li>
+                    <li class="nav-item" id="attendanceNav">
+                        <a class="nav-link" href="/attendance/attendance.html">Attendance
                             <span class="sr-only">(current)</span>
                         </a>
+                    </li>
+                    <li class="nav-item" id="helpNav">
+                        <a class="nav-link" href="../help/help.html">Help</a>
                     </li>
                     <li class="nav-item">
                         <button type="button" class="btn btn-outline-primary" onclick="logout()">Logout</button>
@@ -73,47 +78,27 @@
         <span class="spinner" id="topSpinner">Loading…</span>
 
 
-        <!-- Intercommittee Section -->
-        <div id="intercommitteeSection" class="container">
+        <!-- Title Card -->
+        <div id="titleCard" class="container">
             <div class="card">
                 <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     <h5 class="mb-0">
-                        Intercommittee Showdown
+                        Calendar
                     </h5>
                 </div>
             
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#intercommitteeSection">
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#titleCard">
                     <div class="card-body">
-                        <ul class="bar-graph">
-                            <li class="bar primary" style="height: 0%;" title="0" id="artsAndCultureLI">
-                                <div class="description">A&C</div>
-                                <div class="percent" id="artsAndCultureTXT">90</div>
-                            </li>
-                            <li class="bar secondary" style="height: 0%;" title="0" id="currentEventsLI">
-                                <div class="percent" id="currentEventsTXT">80</div>
-                                <div class="description">CE</div>
-                            </li>
-                            <li class="bar success" style="height: 0%;" title="0" id="entertainmentLI">
-                                <div class="percent" id="entertainmentTXT">70</div>
-                                <div class="description">ENT</div>
-                            </li>
-                            <li class="bar warning" style="height: 0%;" title="0" id="publicityLI">
-                                <div class="percent" id="publicityTXT">60</div>
-                                <div class="description">PUB</div>
-                            </li>
-                            <li class="bar alert" style="height: 0%;" title="0" id="purdueAfterDarkLI">
-                                <div class="percent" id="purdueAfterDarkTXT">50</div>
-                                <div class="description">PAD</div>
-                            </li>
-                            <li class="bar extra" style="height: 0%;" title="0" id="spiritAndTraditionsLI">
-                                <div class="percent" id="spiritAndTraditionsTXT">40</div>
-                                <div class="description">S&T</div>
-                            </li>
-                        </ul>
+                        <p>
+                            As the source for campus entertainment, the Purdue Student Union Board hosts weekly events that aim to reach and enrich Purdue Students. 
+                            <br><br>
+                            Below, you will find our calendar for our events for this semester.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
+        
         <script src="../jquery-3.2.1.min.js"></script>
         <script src="../bootstrap.bundle.min.js"></script>
         <script src="calendar.js"></script>

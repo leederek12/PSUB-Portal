@@ -3,38 +3,6 @@ var API_KEY = 'AIzaSyAtQULaPG_AsmOKmsWESJEESDuqOPs8IdU'
 var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
 var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
 
-// Committee Spreadsheet IDS
-var sheetIDS = {
-    "artsAndCulture": '1mbu-7VK5mqQk2FNKwwk0b5CGbXt1nGaW53rVa4lbvPc',
-    "currentEvents": '12a9SZndguVFyRlO8xbAj9vLQ5J45Dmn8DIeEBenVOSY',
-    "entertainment": '1CwhXGiTaf8QZHMfSOiBkF2CrqQlPRYPiB0-j-BHADRI',
-    "publicity": '1rU7315Nl-fZpTU2YCRcKWUmYUBqlSLMfhFEJ7e8slf8',
-    "purdueAfterDark": '1cYa09UftGhaE8ExG9bJnuxwAgalSbY4-t5abFZY1QPQ',
-    "spiritAndTraditions": '1r7cxTeWDccKVAp4_cd9BKSnhxqRxQv9goxEYafTPv5I'
-}
-
-//All Committee Data
-var committees = {
-    "artsAndCulture": [],
-    "currentEvents": [],
-    "entertainment": [],
-    "publicity": [],
-    "purdueAfterDark": [],
-    "spiritAndTraditions": []
-};
-
-var committeeList = ["artsAndCulture", "currentEvents", "entertainment", "publicity", "purdueAfterDark", "spiritAndTraditions"];
-
-//All Intercommittee Points
-var points = {
-    "artsAndCulture": 0,
-    "currentEvents": 0,
-    "entertainment": 0,
-    "publicity": 0,
-    "purdueAfterDark": 0,
-    "spiritAndTraditions": 0
-}
-
 var scripts = {
     "artsAndCulture": "https://script.google.com/macros/s/AKfycbwHZInpf-2XVeATHRFTi2s2KMFh5odvbvGvLYmdVah-Mc0j1ss/exec",
     "currentEvents": "https://script.google.com/macros/s/AKfycbxNNSZ-oIRBXZUm1I6isLwo0LpNQxpI-y6Gur_9-Jmu2Hcwo7E/exec",
@@ -43,13 +11,10 @@ var scripts = {
     "purdueAfterDark": "https://script.google.com/macros/s/AKfycbwsOqIWytba8oZvq9NaZ1bshNIkKPD2-jwrfOILRVcQVosB0j4/exec",
     "spiritAndTraditions": "https://script.google.com/macros/s/AKfycbyCj7FY0DXRp1T_gTH6mM261puqhUGqIvIXdGo5Yp-FXJ5VUqk/exec"
 }
-//Current Information
-var currentCommittee = "";
-var currentName = "";
-var currentData = {};
-let heights = {};
-let dataCount = 0;
-var membersArray = [];
+
+var positionArray = [];
+var goalsArray = [];
+var initiativeArray = [];
 
 function logout(){
     console.log("Logout Attempted");
@@ -63,114 +28,91 @@ function load(){
         window.location.replace("../index.html");
     }
     else{
+        loadGoals();
+
         let storageObj = JSON.parse(localStorage.getItem("psubPortal"));
         currentCommittee = storageObj.committee;
         currentName = storageObj.name;
         let firstName = currentName.substring(0, currentName.indexOf(" "));
         document.getElementById("navName").innerHTML = `Hi, ${firstName}!`;
-        
-        // Handle BOD
-        if(currentCommittee.localeCompare("boardofDirectors") != 0){
-            window.location.replace("../hours/hours.html");
-        }
-    
 
-        // Intercommittee
-        heights = {};
-        for (var i = 0; i < committeeList.length; i++) {
-            data(committeeList[i]);
+        // Handle BOD
+        //alumni
+        if(currentCommittee.localeCompare("alumni") == 0){
+            document.getElementById("marketingNav").remove();
+            document.getElementById("calendarNav").remove();
         }
+        //inactive
+        if(currentCommittee.localeCompare("inactive") == 0){
+            document.getElementById("marketingNav").remove();
+        }
+        //general member
+        if(currentCommittee.localeCompare("boardofDirectors") != 0){
+            document.getElementById("attendanceNav").remove();
+        }
+        
     }   
 }
 var request;
 
-function loadMembers() {
-    var committeeListed = ["artsAndCulture", "currentEvents", "entertainment", "publicity", "purdueAfterDark", "spiritAndTraditions"];
-        var committee = 0;
-        
-        // Set index of sheet for currentCommittee
-        committee = committeeListed.indexOf(currentCommittee)+1;
-        
-        
-        var sheetUrl = 'https://spreadsheets.google.com/feeds/cells/1e43-KJ4R893szo_TzP4_TGv75bhec-spoTiZK_yfCS4/' + committee + '/public/full?alt=json';
+function loadGoals() {
+        var sheetUrl = 'https://spreadsheets.google.com/feeds/list/1zRa32o2Ji3RTZCtF93QB1VgVGb7Z1nJwLAgh2_O480s/od6/public/values?alt=json';
         $.getJSON(sheetUrl, function(data){
             var entry = data.feed.entry;
       
-            // Get Member Names
+            console.log(entry);
             for(var x = 0; x < entry.length; x++){
-                if(entry[x].gs$cell.row === "3" && entry[x].gs$cell.col !== "1"){
-                    membersArray.push(entry[x].content.$t);
-                }
-            }
-            
-            var attendanceValues = ["Present", "Excused", "Unexcused"]
-            
-            // Create table entries for each member (with dropdown)
-            for(var x = 0; x < membersArray.length; x++) {
+                var selectedPosition = entry[x].title.$t;
+                var preEditedGoal = entry[x].gsx$goals.$t;
+                
+                positionArray.push(selectedPosition);
+                goalsArray.push(preEditedGoal);
+                
+                
                 let tempTR = document.createElement("tr");
                 tempTR.setAttribute("class", "tableRow");
+                let goal = document.createElement("td");
+                let position = document.createElement("td");         
 
-                let members = document.createElement("td");
-                members.innerHTML = membersArray[x];
-            
-                let attendance = document.createElement("td");
-            
-                let selectAttendance = document.createElement("select");
-                selectAttendance.id = membersArray[x] + "dropdown";
-                selectAttendance.setAttribute("class", "form-control dropdown")
+                position.innerHTML = selectedPosition;
                 
-                for(var y = 0; y < attendanceValues.length; y++) {
-                    var option = document.createElement("option");
-                    option.value = attendanceValues[y];
-                    option.text = attendanceValues[y];
-                    selectAttendance.appendChild(option);
+                var goalArray = preEditedGoal.split('.');
+                var resultingGoal = "";
+                console.log(goalArray);
+                for (let i = 0; i < goalArray.length - 1; i++) {
+                    let indvgoal = document.createElement("tr");
+                    
+                    let category = document.createElement("td");
+                    let description = document.createElement("td");
+                    
+                    let indGoalSplit = goalArray[i] + ".";
+                    
+                    var cat = '<b>Goal';
+                    var desc = '<h6>' + indGoalSplit.split('Goal: ')[1];
+                    if (indGoalSplit.split('Goal: ').length == 1) {
+                        console.log("hello");
+                        cat = '';
+                        desc = indGoalSplit.split('Initiative: ')[1];   
+                    }
+                    
+                    category.innerHTML = cat;
+                    description.innerHTML = desc;
+                    
+                    indvgoal.append(category);
+                    indvgoal.append(description);
+                    
+                    goal.append(indvgoal);
                 }
-
-                attendance.appendChild(selectAttendance);
-                tempTR.appendChild(members);
-                tempTR.appendChild(attendance);
-
+                
+                tempTR.appendChild(position);
+                tempTR.appendChild(goal);
+                    
                 document.getElementById("tableBody").appendChild(tempTR);
             }
         });
 }
 
-function submitAttendance(){
-    let dataObj = {};
-    dataObj["committee"] = currentCommittee;
 
-    let today = new Date();
-    today = "" + (today.getMonth()+1) + "-" + ('0' + today.getDate()).slice(-2) + "-" + today.getFullYear();
-    dataObj["Date"] = today;
-    
-    for(x = 0; x < membersArray.length; x++){
-        var str = membersArray[x] + "dropdown";
-        var val = document.getElementById(str).value;
-        dataObj[membersArray[x]] = val;
-    }
-    // console.log(dataObj);
-    
-    var settings = {
-        "url": "https://script.google.com/macros/s/AKfycbzmNXk4Y74JAk3Ozt8GgrUnn0rjV_wz1_Wrrm_AjA/exec",
-        "type": "POST",
-        "data": dataObj
-    }
-
-    $.ajax(settings).done(function (response) {
-       if(response.result === "success"){
-        alert("Attendance recorded for " + today);
-
-        // Reset Dropdowns
-        for(x = 0; x < membersArray.length; x++){
-            var str = membersArray[x] + "dropdown";
-            document.getElementById(str).selectedIndex = 0;
-        }   
-       }
-       else{
-        alert("Error recording attendance");
-       }
-    });
-}
 
 function calculateHeight() {
     // Dynamic Height

@@ -174,14 +174,6 @@ ul {
     padding: 0;
 }
 
-#titleCard{
-  padding: 0px;
-  margin-top: 41px;
-  cursor: pointer;
-  position: relative;
-  margin-bottom: 15px;
-}
-
 .signupRow{
     background-color:lightgray !important;
 }

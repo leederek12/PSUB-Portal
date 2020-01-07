@@ -5,43 +5,46 @@ var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"
 
 // Committee Spreadsheet IDS
 var sheetIDS = {
-    "artsAndCulture": '1mbu-7VK5mqQk2FNKwwk0b5CGbXt1nGaW53rVa4lbvPc',
-    "currentEvents": '12a9SZndguVFyRlO8xbAj9vLQ5J45Dmn8DIeEBenVOSY',
-    "entertainment": '1CwhXGiTaf8QZHMfSOiBkF2CrqQlPRYPiB0-j-BHADRI',
-    "publicity": '1rU7315Nl-fZpTU2YCRcKWUmYUBqlSLMfhFEJ7e8slf8',
-    "purdueAfterDark": '1cYa09UftGhaE8ExG9bJnuxwAgalSbY4-t5abFZY1QPQ',
-    "spiritAndTraditions": '1r7cxTeWDccKVAp4_cd9BKSnhxqRxQv9goxEYafTPv5I'
+    "afterDark": '1cEy-qHpHlP-PzhK_DAc52CCetp7eMuSySXrmgU8cG1U',
+    "currentEvents": '1kRw5iikX74fwatg8zooitmNW6xMGbsZvVqKHr6mPxnc',
+    "entertainment": '1MxtSSUmbhFyEP305ShrrIjvtZb8iTDz21Nmt9EWnJu4',
+    "fineArts": '1pOqGyj3G0a-55HphaA87zKGGFG5vMGS7McfkjGa9TLU',
+    "publicity": '1bIN6fJqJv1nlRoIc85GQkHa4NTJBqhsKyKKauQ9xsqI',
+    "spiritAndTraditions": '1SzMuiuWEO-O0vweLPDi7z6efvi0u_d9eY08l5GuToAY', 
+    "boardofDirectors": '1qbhzwZuGyq7iwM6RhdtBaJGvXnlZBij-A0bu0EqN3y4',
+    "alumni": '11aaTwDKrrWNE7wAm_keE1g_ZI1NKn-S-WDLrdOfCKD0',
+    "inactive": '1eJUkTyu0-3QIZf3nJWQ5t8pGg0Hs3pR4KNDRybgZkw4'
 }
 
 //All Committee Data
 var committees = {
-    "artsAndCulture": [],
+    "fineArts": [],
     "currentEvents": [],
     "entertainment": [],
     "publicity": [],
-    "purdueAfterDark": [],
+    "afterDark": [],
     "spiritAndTraditions": []
 };
 
-var committeeList = ["artsAndCulture", "currentEvents", "entertainment", "publicity", "purdueAfterDark", "spiritAndTraditions"];
+var committeeList = ["afterDark", "currentEvents", "entertainment", "publicity", "fineArts", "spiritAndTraditions", "boardofDirectors", "alumni", "inactive"];
 
 //All Intercommittee Points
 var points = {
-    "artsAndCulture": 0,
+    "fineArts": 0,
     "currentEvents": 0,
     "entertainment": 0,
     "publicity": 0,
-    "purdueAfterDark": 0,
+    "afterDark": 0,
     "spiritAndTraditions": 0
 }
 
 var scripts = {
-    "artsAndCulture": "https://script.google.com/macros/s/AKfycbwHZInpf-2XVeATHRFTi2s2KMFh5odvbvGvLYmdVah-Mc0j1ss/exec",
-    "currentEvents": "https://script.google.com/macros/s/AKfycbxNNSZ-oIRBXZUm1I6isLwo0LpNQxpI-y6Gur_9-Jmu2Hcwo7E/exec",
-    "entertainment": "https://script.google.com/macros/s/AKfycbx5kmyOMiui5joHakz-RDs5AtHYI64I7BBZ_rkLBWVww5RClrw/exec",
-    "publicity": "https://script.google.com/macros/s/AKfycbxsLiZpXYRBjCN2Eo5GYvxmv-BDoMu9JcX2CX2LSRldleYlxPM/exec",
-    "purdueAfterDark": "https://script.google.com/macros/s/AKfycbwsOqIWytba8oZvq9NaZ1bshNIkKPD2-jwrfOILRVcQVosB0j4/exec",
-    "spiritAndTraditions": "https://script.google.com/macros/s/AKfycbyCj7FY0DXRp1T_gTH6mM261puqhUGqIvIXdGo5Yp-FXJ5VUqk/exec"
+    "fineArts": "https://script.google.com/macros/s/AKfycby7cPB-Xog6aXM4U7zBsQxtLGXsG8SOtRkuMhfOGg/exec",
+    "currentEvents": "https://script.google.com/macros/s/AKfycbytsq24BPvQDRetgTETcsZsErVM49uRb4CYJMznxw/exec",
+    "entertainment": "https://script.google.com/macros/s/AKfycbz2CtJnyyvrG2iOL9kTMBTfMkn2k0W09wMUC-u_Jw/exec",
+    "publicity": "https://script.google.com/macros/s/AKfycbxqDxJCW9kvaeljvpWi6hg3TD9rtGAYUS46DW3gIBn2ymF_94g/exec",
+    "afterDark": "https://script.google.com/macros/s/AKfycbx24jPoHIZWISV3ZSNg2KMyR2-HaCD_YSYZIgC8/exec",
+    "spiritAndTraditions": "https://script.google.com/macros/s/AKfycbydul38GMepC4HTyekwy8HX3TMhOd8diWZk_uNq/exec"
 }
 
 //Current Information
@@ -65,7 +68,7 @@ function load(){
     else{
         // Intercommittee
         heights = {};
-        for (var i = 0; i < committeeList.length; i++) {
+        for (var i = 0; i < 6; i++) {
             data(committeeList[i]);
         }
 
@@ -80,12 +83,26 @@ function load(){
         updateHoursSheet(storageObj, storageObj.committee);
 
         // Handle BOD
-        if(firstName === "Director"){
-            document.getElementById("hoursNav").remove();
+        console.log(currentCommittee);
+        //alumni
+        if (currentCommittee.localeCompare("alumni") == 0 || currentCommittee.localeCompare("inactive") == 0) {
+            document.getElementById("attendanceNav").remove();
+            document.getElementById("marketingNav").remove();
+            document.getElementById("hoursButton").remove();
+            document.getElementById("hours-form").remove();
+            document.getElementById("intercommitteeSection").remove();
+            document.getElementById("collapseThree").remove();
         }
-        else{
+        //general member
+        else if (currentCommittee.localeCompare("boardofDirectors") != 0) {
             document.getElementById("attendanceNav").remove();
         }
+        
+        if (currentCommittee.localeCompare("alumni") == 0) {
+            document.getElementById("calendarNav").remove();
+        }
+        
+        loadPrizePyramid();
     }
 }
 
@@ -169,7 +186,7 @@ function updateHoursSheet(data, committee) {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": 'https://spreadsheets.google.com/feeds/list/' + sheetIDS[committee] + '/' + data.number + '/public/full?alt=json-in-script',
+        "url": 'https://spreadsheets.google.com/feeds/list/' + sheetIDS[committee] + '/' + (data.number) + '/public/full?alt=json-in-script',
         "method": "GET",
         "headers": {
             // "id": CLIENT_ID,
@@ -180,8 +197,8 @@ function updateHoursSheet(data, committee) {
     $.ajax(settings).done(function (response) {
         response = response.substring(response.indexOf("{"), response.length - 2)
         var response = JSON.parse(response);
-        console.log(response);
-
+        console.log("got hours");
+        
         var totalHours = 0;
         var totalPoints = 0;
 
@@ -302,8 +319,38 @@ function addHours() {
             document.getElementById("confirmMessage").innerHTML = event + " Added Successfully";
 
             updateHoursSheet(currentData, currentCommittee); //called after POST made successfully
+            
+            console.log("worked");
         });
     }
+}
+
+function loadPrizePyramid(){
+    var sheetUrl = 'https://spreadsheets.google.com/feeds/list/18fVEawTCLWxTiLGkGdNxJBUZRFtCBHGBmW1lNhl8NMg/od6/public/values?alt=json';
+        $.getJSON(sheetUrl, function(data){
+            var entry = data.feed.entry;
+      
+            console.log("yuh");
+            console.log(entry);
+            for(var x = 0; x < entry.length; x++){
+                var pointValue = entry[x].title.$t;
+                var prizeValue = entry[x].gsx$prize.$t;
+                
+                
+                let tempTR = document.createElement("tr");
+                tempTR.setAttribute("class", "tableRow");
+                let points = document.createElement("td");
+                let prize = document.createElement("td");  
+                
+                points.innerHTML = pointValue;
+                prize.innerHTML = prizeValue;
+
+                tempTR.append(points);
+                tempTR.append(prize);
+                
+                document.getElementById("tableBodyPrize").appendChild(tempTR);
+            }
+        });
 }
 
 function removeHours(rowInfo) {
