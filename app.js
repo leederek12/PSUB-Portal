@@ -86,8 +86,6 @@ function load() {
         }
     }
     document.getElementsByClassName("body")[0].id = "normalTheme";
-    button.innerHTML = "Turn On Theme";
-    document.getElementsByTagName("canvas")[0].style.display = "none";
     document.getElementById("logo").src="Logo.png"
     loadBOD();
 }
@@ -142,7 +140,7 @@ function data(committee) {
         //console.log(response);
         response = response.substring(response.indexOf("{"), response.length - 2)
         var response = JSON.parse(response);
-        console.log(response);
+        //console.log(response);
                 
         for (var i = 0; i < response.feed.entry.length; i++) {
             if (i !== response.feed.entry.length - 1) {
@@ -162,7 +160,7 @@ function data(committee) {
                 committees[committee].push({ totalHours: tempHours, totalPoints: tempPoints });
             }
         }
-        console.log(committees[committee]);
+        //console.log(committees[committee]);
     });
     console.log("Data Loaded Successfully");
 }
@@ -183,8 +181,8 @@ function committeeChange() {
 
     var optionsAsString = "";
 
-    console.log(text);
-    console.log(committees[text]);
+    //console.log(text);
+    //console.log(committees[text]);
 
     for (var i = 0; i < committees[text].length - 1; i++) {
         optionsAsString += "<option value='" + committees[text][i].name + "'>" + committees[text][i].name + "</option>";
@@ -207,6 +205,7 @@ function login() {
 
     var committee = selectedCommittee.options[selectedCommittee.selectedIndex].text;
     var user = selectedUser.options[selectedUser.selectedIndex].text;
+    console.log(user);
 
     if (committee === 'Select Your Committee' || user === 'Committee Not Selected') {
         unsuccessfulLogin("Committee and/or Member Information Missing");
@@ -216,6 +215,10 @@ function login() {
         committee = committee.replace(/\s/g, '') //Manipulation Done
 
         var pinInput = document.getElementById("pinText").value;
+        if(pinInput === ''){
+            unsuccessfulLogin("PIN is blank.");
+            return true;
+        }
 
         // console.log(committee + ", " + user + ", " + pinInput);
         
@@ -223,13 +226,34 @@ function login() {
             if (committees[committee][i].name === user) {
                 console.log("name: " + committees[committee][i].name);
                 //REMOVE
-                //if (committees[committee][i].pin === pinInput) {
-                    console.log("Successful Login");
-                    successfulLogin(committees[committee][i], committee);
-                //}
-                //else {
-                //    unsuccessfulLogin("Incorrect PIN");
-                //}
+                if (committees[committee][i].pin === pinInput) {
+                    
+                    //should be a more efficient way
+                    //checks to see if user is a BOD member, if yes
+                    //offers option to redirect
+                    var found = false;
+                    
+                    for(var z = 0; z < positionArray.length; z++) {
+                        if(user.localeCompare(positionArray[z].person) == 0){
+                            let change = confirm("You are now viewing your general member page. Click \"Ok\" to proceed or click \"Cancel\" to view your BOD page.");
+                            if(change == true) {
+                                successfulLogin(committees[committee][i], committee);
+                            }
+                            else {
+                                successfulLogin(committees[committeeList[6]][z], committeeList[6]);
+                            }
+                            found = true;
+                        }
+                    }
+                    
+                    if(!found){
+                        console.log("Successful Login");
+                        successfulLogin(committees[committee][i], committee);
+                    }
+                }
+                else {
+                    unsuccessfulLogin("Incorrect PIN");
+                }
                 i = committees[committee].length;
             }
         }
@@ -252,12 +276,17 @@ function successfulLogin(data, committee) {
     let storageObj = data;
     storageObj["committee"] = committee;
     localStorage.setItem("psubPortal", JSON.stringify(storageObj));
-    console.log(committee);
+    //console.log(committee);
 
     console.log("DATA: " + data.name);
     console.log("DATA: " + data.committee);
 
-    window.location.replace("welcome/welcome.html");
+    if (committee.localeCompare("inactive") == 0 || committee.localeCompare("alumni") == 0) {
+        window.location.replace("goalsandinitiatives/goals.html");
+    }
+    else{
+        window.location.replace("hours/hours.html");
+    }
 }
 
 function unsuccessfulLogin(reason) {

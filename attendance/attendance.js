@@ -5,42 +5,45 @@ var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"
 
 // Committee Spreadsheet IDS
 var sheetIDS = {
-    "artsAndCulture": '1mbu-7VK5mqQk2FNKwwk0b5CGbXt1nGaW53rVa4lbvPc',
+    "afterDark": '1cYa09UftGhaE8ExG9bJnuxwAgalSbY4-t5abFZY1QPQ',
     "currentEvents": '12a9SZndguVFyRlO8xbAj9vLQ5J45Dmn8DIeEBenVOSY',
     "entertainment": '1CwhXGiTaf8QZHMfSOiBkF2CrqQlPRYPiB0-j-BHADRI',
+    "fineArts": '1mbu-7VK5mqQk2FNKwwk0b5CGbXt1nGaW53rVa4lbvPc',
     "publicity": '1rU7315Nl-fZpTU2YCRcKWUmYUBqlSLMfhFEJ7e8slf8',
-    "purdueAfterDark": '1cYa09UftGhaE8ExG9bJnuxwAgalSbY4-t5abFZY1QPQ',
     "spiritAndTraditions": '1r7cxTeWDccKVAp4_cd9BKSnhxqRxQv9goxEYafTPv5I'
 }
 
 //All Committee Data
 var committees = {
-    "artsAndCulture": [],
+    "afterDark": [],
     "currentEvents": [],
     "entertainment": [],
+    "fineArts": [],
     "publicity": [],
-    "purdueAfterDark": [],
     "spiritAndTraditions": []
 };
 
-var committeeList = ["artsAndCulture", "currentEvents", "entertainment", "publicity", "purdueAfterDark", "spiritAndTraditions"];
+var positionID = '1Fw1q1b4g7BZOsbKChoaWLf2QlETS9cxO15omLKBqUXs';
+var positionArray = [];
+
+var committeeList = ["afterDark", "currentEvents", "entertainment", "fineArts", "afterDark", "spiritAndTraditions"];
 
 //All Intercommittee Points
 var points = {
-    "artsAndCulture": 0,
+    "afterDark": 0,
     "currentEvents": 0,
     "entertainment": 0,
+    "fineArts": 0,
     "publicity": 0,
-    "purdueAfterDark": 0,
     "spiritAndTraditions": 0
 }
 
 var scripts = {
-    "artsAndCulture": "https://script.google.com/macros/s/AKfycbwHZInpf-2XVeATHRFTi2s2KMFh5odvbvGvLYmdVah-Mc0j1ss/exec",
+    "afterDark": "https://script.google.com/macros/s/AKfycbwsOqIWytba8oZvq9NaZ1bshNIkKPD2-jwrfOILRVcQVosB0j4/exec",
     "currentEvents": "https://script.google.com/macros/s/AKfycbxNNSZ-oIRBXZUm1I6isLwo0LpNQxpI-y6Gur_9-Jmu2Hcwo7E/exec",
     "entertainment": "https://script.google.com/macros/s/AKfycbx5kmyOMiui5joHakz-RDs5AtHYI64I7BBZ_rkLBWVww5RClrw/exec",
+    "fineArts": "https://script.google.com/macros/s/AKfycbwHZInpf-2XVeATHRFTi2s2KMFh5odvbvGvLYmdVah-Mc0j1ss/exec",
     "publicity": "https://script.google.com/macros/s/AKfycbxsLiZpXYRBjCN2Eo5GYvxmv-BDoMu9JcX2CX2LSRldleYlxPM/exec",
-    "purdueAfterDark": "https://script.google.com/macros/s/AKfycbwsOqIWytba8oZvq9NaZ1bshNIkKPD2-jwrfOILRVcQVosB0j4/exec",
     "spiritAndTraditions": "https://script.google.com/macros/s/AKfycbyCj7FY0DXRp1T_gTH6mM261puqhUGqIvIXdGo5Yp-FXJ5VUqk/exec"
 }
 //Current Information
@@ -80,19 +83,34 @@ function load(){
         for (var i = 0; i < committeeList.length; i++) {
             data(committeeList[i]);
         }
-    }   
+    } 
+    loadBOD();
 }
 var request;
 
 function loadMembers() {
-    var committeeListed = ["artsAndCulture", "currentEvents", "entertainment", "publicity", "purdueAfterDark", "spiritAndTraditions"];
+    var committeeListed = ["afterDark", "currentEvents", "entertainment", "fineArts", "publicity", "spiritAndTraditions"];
         var committee = 0;
-        
+            
         // Set index of sheet for currentCommittee
         committee = committeeListed.indexOf(currentCommittee)+1;
+    
+        console.log(currentCommittee);
+        console.log(currentName);
+        console.log("HELLO: " + committee);
         
-        
-        var sheetUrl = 'https://spreadsheets.google.com/feeds/cells/1e43-KJ4R893szo_TzP4_TGv75bhec-spoTiZK_yfCS4/' + committee + '/public/full?alt=json';
+        console.log(positionArray.length);
+    
+        for(var x = 4; x < positionArray.length; x++){
+            console.log(positionArray[x].person);
+            if(positionArray[x].person.localeCompare(currentName) == 0){
+                console.log("Found Person: " + (x - 3));
+                committee = x - 3;
+                break;
+            }
+        }
+            
+        var sheetUrl = 'https://spreadsheets.google.com/feeds/cells/1W_IO7aYZ_V1v2GAVbMZRbdH0jacuLjoRzjvBsHzWvK4/' + committee + '/public/full?alt=json';
         $.getJSON(sheetUrl, function(data){
             var entry = data.feed.entry;
       
@@ -133,6 +151,38 @@ function loadMembers() {
                 document.getElementById("tableBody").appendChild(tempTR);
             }
         });
+}
+
+function loadBOD() {
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": 'https://spreadsheets.google.com/feeds/list/1Fw1q1b4g7BZOsbKChoaWLf2QlETS9cxO15omLKBqUXs/1/public/full?alt=json-in-script',
+        "method": "GET",
+        "headers": {
+        }
+    }
+
+    $.ajax(settings).done(function (response) {
+        //console.log(response);
+        response = response.substring(response.indexOf("{"), response.length - 2)
+        var response = JSON.parse(response);
+        console.log(response);
+                
+        for (var i = 0; i < response.feed.entry.length; i++) {
+            if (i !== response.feed.entry.length - 1) {
+                var tempPosition = response.feed.entry[i].gsx$position.$t;
+                var tempPerson = response.feed.entry[i].gsx$person.$t;
+                var tempCommittee = response.feed.entry[i].gsx$previouscommittee.$t;
+
+                positionArray.push({ position: tempPosition, person: tempPerson, previousCommittee: tempCommittee });
+
+            }
+        }
+        console.log(positionArray);
+        loadMembers();
+    });
+    console.log("BOD Data Loaded Successfully");
 }
 
 function submitAttendance(){
@@ -227,14 +277,6 @@ function data(committee) {
                 var tempPoints = response.feed.entry[i].gsx$committeepoints.$t
 
                 committees[committee].push({ totalHours: tempHours, totalPoints: tempPoints });
-
-                var height = tempPoints;
-
-                points[committee] = tempPoints; //for intercommittee points
-                document.getElementById(committee + "LI").style = "height: " + height + "%";
-                heights[committee] = height;
-                document.getElementById(committee + "LI").title = tempPoints;
-                document.getElementById(committee + "TXT").textContent = tempPoints;
             }
         }
         console.log(committees[committee]);

@@ -1,0 +1,156 @@
+* {
+  box-sizing: border-box;
+}
+
+body{
+    padding-top: 105px;
+    background-color: #F2F2F2;
+}
+
+.sidebar{
+    float: left;
+    width: 30%;
+    padding: 20px;
+    flex-basis: 0;
+    flex-grow: 999;
+    min-width: 30%;
+    height: 90.40vh;
+    background-color: #323343;
+    color: white;
+}
+
+.navbar-dark{
+    background-color: #4169E1;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    z-index: 10;
+}
+
+.btn-outline-primary{
+    color: #294390;
+    border-color: #294390;
+}
+
+h6 {
+    font-size: 50px;
+}
+
+h7 {
+    font-size: 20px;
+    font-weight: bold
+}
+
+.btn-outline-primary:hover{
+    color: white;
+    background-color: #294390;
+    border-color: #294390;
+}
+
+#navLogo{
+    width: 5rem;
+    height: auto;
+    pointer-events: none;
+}
+
+#navNameLI{
+    pointer-events: none;
+    font-weight: bold;
+}
+
+.button {
+    border: 1px solid grey;
+    border-radius: 4px;
+    
+    padding-top: 30px;
+    padding-left: 5px;
+    
+    color: grey;
+    min-width: 30%;
+    height: 130px;
+    text-align: left;
+    align-content: left;
+    margin-top: 40px;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+}
+
+#eventButton {
+    min-width: 65%;
+    height: auto;
+}
+
+#navName{
+    color: #294390;
+}
+
+table thead th{
+    text-align: center;
+}
+
+#headerBox{
+    align-content: center;
+    padding: 0px;
+}
+
+.mainSection{
+    margin-top: 30px;
+    margin-left: 10px;
+}
+
+#headerBox h1 {
+    padding: 10px;
+    border: 1px solid grey;
+    border-radius: 4px;
+    font-size: 20px;
+    color: grey;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#titleCard{
+  padding: 0px;
+  margin-top: 121px;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+#eventName {
+    float: left;
+}
+
+#nextEvent {
+    color: orangered;
+}
+
+#date, #location {
+    float: right;
+}
+
+#sidebar{
+    padding-top: 95px;
+}
+
+#time {
+    float: left;
+    font-size: 30px;
+}
+
+@media (max-width: 600px) {
+  nav, section {
+    width: 100%;
+    height: auto;
+  }
+}
+@media (max-width: 700px) {
+    .sidebar {
+        display: block;
+    }
+}
+
+
