@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Help</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker" rel="stylesheet">
+
+        <link href="../bootstrap.min.css" rel="stylesheet">
+        <link href="help.css" rel="stylesheet" >
+
+    </head>
+    <body onLoad="load()">
+
+        <!-- Nav Bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <div class="container">
+                <li class="navbar-brand">
+                    <img src="../Logo.png" alt="" id="navLogo">
+                </li>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" id="navNameLI"><a class="nav-link" id="navName">Hi!</a></li>
+
+                    <li class="nav-item" id="hoursNav">
+                        <a class="nav-link" href="../goalsandinitiatives/goals.html">Goals and Initiatives</a>
+                    </li>
+                    <li class="nav-item" id="calendarNav">
+                        <a class="nav-link" href="../calendar/calendar.html">Calendar</a>
+                    </li>
+                    <li class="nav-item" id="hoursNav">
+                        <a class="nav-link" href="../hours/hours.html">Hours</a>
+                    </li>
+                    <li class="nav-item" id="marketingNav">
+                        <a class="nav-link" href="../marketing/marketing.html">Physical Marketing</a>
+                    </li>
+                    <li class="nav-item" id="attendanceNav">
+                        <a class="nav-link" href="../attendance/attendance.html">Attendance
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active" id="helpNav">
+                        <a class="nav-link" href="../help/help.html">Help</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-outline-primary" onclick="logout()">Logout</button>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Title Card -->
+        <br><br><br><br><br>
+        
+        <div id="titleCard" class="container">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        Help
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <br>
+        
+        <!-- Bookmarking Section -->
+        <div id="bookmarkCard" class="container">
+            <div class="card">
+                <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <h6 class="mb-0">
+                        1. How to Bookmark
+                    </h6>
+                </div>
+            
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#bookmarkCard">
+                    <div class="card-body">
+                        <p>
+                            Physical Marketing is one of the most fundamental ways the Purdue Student Union Board establishes its image on campus.
+                            <br><br>
+                            Before heading out of the PSUB office, make sure there are physical flyers, a table cloth, and incentives in the marketing cart. 
+                            <br><br>
+                            At the Stewart and PMU marketing locations, tables are be provided. You will need to take the table cloth and the marketing cart to all marketing locations.
+
+                            You can use the PSUB pillar at the Stew location if you know how to use it.
+
+                            <br><br>
+                            If you have any questions, feel free to ask the Publicity Director or the Slack Channel.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        
+        <!-- FAQ Section -->
+        <div id="faqCard" class="container">
+            <div class="card">
+                <div class="card-header" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                    <h6 class="mb-0">
+                        2. Frequently Asked Questions(FAQ's)
+                    </h6>
+                </div>
+            
+                <div id="collapseThree" class="collapse" aria-labelledby="collapseThree" data-parent="#faqCard">
+                    <div class="card-body">
+                            <h5>Frequently Asked Questions</h5>
+                            <br>
+                            <h6>1. What are the weekly time commitments for the Purdue Student Union Board?</h6>
+                            <p>
+                            The weekly time commitments for PSUB vary from 2-4 hours a week for general members. An hour a week is reserved for committee meetings, while two hours are required for <a href="../marketing/marketing.html">Physical Marketing</a>. Aside from these, commitees typically have an event that may require attendence.
+                            </p>
+
+                            <h6>2. What events are required for Spring 2020?</h6>
+                            <p>
+                            Events required for this year are.
+                            </p>
+
+                            <h6>3. What leadership positions are offered on the Purdue Student Union Board?</h6>
+                            <p>
+                                Several positions are offered on the Purdue Student Union Board including Project Leader, Executive Project Leader, Director, and Executive Positions. 
+                                <br><br>
+                                <b>Project Leaders</b> help plan and coordinate events for the Purdue Student Union Board. With the help of the Advisor and corresponding director, project leaders gain valuable leadership experience and an opportunity to bring a unique event to campus.
+                                <br><br>
+                                Contrary to Project Leaders, <b>Executive Project Leaders</b> serve for a year and play an important role with assisting the Execs with their tasks. From Alumni Relations to Campus Relations, Exec PL's step up to learn more about PSUB and to further our mission.
+                                <br><br>
+                                <b>Directors</b> are the leaders of each of six committees. They play an integral with the function of the Purdue Student Union Board by planning and coordinating events and making sure committee members are heard. 
+                                <br><br>
+                                <b>Executive Officers</b> or Execs serve to ensure that PSUB is running smoothly and to promote the Mission of the PSUB and the Union. 
+                            </p>
+
+                            <h6>4. What events can I help out at?</h6>
+                            <p>
+                                You can help out before/at or after event! Make sure to let the PL and Director of the event know that you can by signing up! By helping out at events that are not your committee's, you can earn <a href="../hours/hours.html">Double Intercommittee Points</a>!
+                            </p>
+
+                            <h6>5. Where can I find more information about each page?</h6>
+                            <p>
+                                Each title heading is clickable and contains supplemental information. If you have any questions, feel free to ask any Director or Exec.
+                            </p>
+
+                            <h6>6. I have a question that wasn't answered here!</h6>
+                            <p>
+                                No worries! You can as any Board of Director(Director or Exec) or even any of our Advisor(s)!
+                            </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        
+        <!-- About Section -->
+        <div id="aboutCard" class="container">
+            <div class="card">
+                <div class="card-header" id="headingFour" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                    <h6 class="mb-0">
+                       3.  About
+                    </h6>
+                </div>
+            
+                <div id="collapseFour" class="collapse" aria-labelledby="collapseFour" data-parent="#aboutCard">
+                    <div class="card-body">
+                        <h4>Purpose</h4>
+                        <p>The Purdue Student Union Board, PSUB, provides a variety of programs and services that enrich and entertain. Involvement with PSUB is an extension of your college education outside of the classroom and is a great way to get hands-on experience and develop new skills. PSUB also provides students with leadership development and serves as the voice of Purdue students in cooperative management to the Purdue Memorial Union.
+                        </p>
+                        
+                        <h4>Mission Statement</h4>
+                        
+                        <h4>Website</h4>
+                        <p>
+                            <a href="https://union.purdue.edu/psub/">https://union.purdue.edu/psub/</a>
+                        </p>
+                        
+                        <h4>Social Media</h4>
+                        <ul>
+                            <li>Facebook: <a href="https://www.facebook.com/PSUB01/">@psub01</a></li>
+                            <li>Instagram: <a href="https://www.instagram.com/psubevents/">@psubevents</a></li>
+                            <li>Twitter: <a href="https://twitter.com/PSUBEVENTS">@psubevents</a></li>
+                        </ul>
+                        
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        
+        <!-- Changes Section -->
+        <div id="titleCard" class="container">
+            <div class="card">
+                <div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <h6 class="mb-0">
+                        4. Portal Changelog
+                    </h6>
+                </div>
+            
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#titleCard">
+                    <div class="card-body">
+                        <h4>Winter break 2020</h4>
+                        <ul>
+                            <li>- Removed Database Page</li>
+                            <li>- Added Title and Subtext</li>
+                            <li>- Added Goals and Initiatives Page</li>
+                            <li>- Added Help Page</li>
+                            <li>- Changes to Marketing</li>
+                            <li>- Added Alumni, Inactive Login Pages</li>
+                            <li>- Added Prize Pyramid</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        
+        <script src="../jquery-3.2.1.min.js"></script>
+        <script src="../bootstrap.bundle.min.js"></script>
+        <script src="help.js"></script>
+    </body>
+       
+</html>
